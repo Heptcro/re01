@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单的HTML页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            display: inline-block;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>你好，世界！</h1>
+        <p>这是一个由AI生成的简单HTML页面。</p>
+        <p>现在的时间是：<span id="time"></span></p>
+    </div>
+
+    <script>
+        // 动态显示当前时间
+        document.getElementById('time').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>
