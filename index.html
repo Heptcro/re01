@@ -4,13 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我们的时光</title>
+    <!-- 引入favicon图标 -->
+    <link rel="icon" href="123.ico" type="image/x-icon">
+	
+    <title>我们的故事</title>
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
             background-color: #f5f5f5;
+        }
+
+        /* 爱心飘落动画容器 */
+        .floating-hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* 确保点击能穿透到下面的内容 */
+            z-index: 100; /* 保证在背景之上，但在主要内容之下 */
+            overflow: hidden;
+        }
+
+        /* 飘落的爱心样式 */
+        .falling-heart {
+            position: absolute;
+            color: #ff6b6b;
+            opacity: 0;
+            text-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
+            animation: falling linear forwards;
+        }
+
+        /* 飘落动画 */
+        @keyframes falling {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         .bg-wrap {
@@ -156,6 +192,8 @@
             transition: all 0.3s ease;
             box-sizing: border-box;
             cursor: pointer;
+            position: relative;
+            z-index: 200; /* 确保卡片在爱心之上 */
         }
 
         .time_card:hover {
@@ -198,6 +236,8 @@
             background-color: #fff;
             padding: 40px 20px;
             margin-top: 20px;
+            position: relative;
+            z-index: 200; /* 确保内容在爱心之上 */
         }
         
         .memories-container {
@@ -268,6 +308,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             flex-shrink: 0;
+            position: relative;
+            z-index: 200;
         }
         
         .timeline-item:hover {
@@ -593,6 +635,8 @@
             padding: 20px 0;
             text-align: center;
             margin-top: 40px;
+            position: relative;
+            z-index: 200; /* 确保页脚在爱心之上 */
         }
         
         .footer-content {
@@ -635,6 +679,9 @@
 </head>
 
 <body>
+    <!-- 爱心飘落动画容器 -->
+    <div class="floating-hearts-container" id="floatingHeartsContainer"></div>
+
     <!-- 作者信息 -->
     <!-- Author：TC -->
 
@@ -757,7 +804,7 @@
      <!-- 底部创意区域 -->
     <section class="memories-section">
         <div class="memories-container">
-            <h2 class="memories-title">爱情宣言</h2>
+            <h2 class="memories-title">留言墙</h2>
             
             <div class="quotes-container">
                 <p id="love-quote" class="love-quote">"我愿意用一生的时间，陪你看遍四季风景，从清晨到黄昏，从年少到白头。"</p>
@@ -769,7 +816,7 @@
             
             <div class="timeline-preview">
                 <div class="timeline-item" data-capsule="date" title="第一次约会">约会</div>
-                <div class="timeline-item" data-capsule="hand" title="第一次牵手">牵手</div>
+                <div class="timeline-item" data-capsule="confession" title="第一次告白">告白</div>
                 <div class="timeline-item" data-capsule="travel" title="第一次旅行">旅行</div>
                 <div class="timeline-item" data-capsule="birthday" title="第一个生日">生日</div>
                 <div class="timeline-item" data-capsule="future" title="未来可期">未来</div>
@@ -802,6 +849,55 @@
     </footer>
 
     <script>
+        // 爱心飘落动画逻辑
+        function createFallingHeart() {
+            const container = document.getElementById('floatingHeartsContainer');
+            if (!container) return;
+            
+            // 创建爱心元素
+            const heart = document.createElement('div');
+            heart.classList.add('falling-heart');
+            
+            // 随机选择不同的爱心符号
+            const hearts = ['❤️', '💖', '💘', '💓', '💗', '💕'];
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            
+            // 随机大小 (12px 到 24px)
+            const size = Math.random() * 12 + 12;
+            heart.style.fontSize = `${size}px`;
+            
+            // 随机水平位置
+            const left = Math.random() * 100;
+            heart.style.left = `${left}%`;
+            
+            // 随机动画持续时间 (5s 到 15s)
+            const duration = Math.random() * 10 + 5;
+            heart.style.animationDuration = `${duration}s`;
+            
+            // 随机透明度 (0.3 到 0.8)
+            const opacity = Math.random() * 0.5 + 0.3;
+            heart.style.opacity = opacity;
+            
+            // 添加到容器
+            container.appendChild(heart);
+            
+            // 动画结束后移除元素
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+        
+        // 定时创建爱心
+        function startFallingHearts() {
+            // 初始创建几个爱心
+            for (let i = 0; i < 5; i++) {
+                setTimeout(createFallingHeart, i * 1000);
+            }
+            
+            // 之后每隔一段时间创建一个新爱心
+            setInterval(createFallingHeart, 2000);
+        }
+
         // 多年农历转换数据库（2024-2036年）
         const lunarToSolarDatabase = {
             2024: {
@@ -956,26 +1052,26 @@
             }
         }
 
-        // 时光胶囊内容数据 - 已替换为爱心按钮
+        // 时光胶囊内容数据
         const capsuleData = {
             date: {
                 title: "第一次约会",
-                subtitle: "那个美好的开始",
+                subtitle: "美好的开始",
                 content: `
                     <div class="capsule-carousel">
                         <div class="carousel-container">
                             <div class="carousel-slides">
                                 <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="咖啡厅" class="carousel-image">
-                                    <div class="carousel-caption">温馨的邂逅</div>
+                                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="？？" class="carousel-image">
+                                   
                                 </div>
                                 <div class="carousel-slide">
                                     <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="阳光午后" class="carousel-image">
-                                    <div class="carousel-caption">阳光明媚的午后</div>
+                                 
                                 </div>
                                 <div class="carousel-slide">
                                     <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="聊天时光" class="carousel-image">
-                                    <div class="carousel-caption">愉快的聊天时光</div>
+                               
                                 </div>
                             </div>
                             <button class="carousel-controls carousel-prev" onclick="changeSlide(-1)">‹</button>
@@ -987,7 +1083,7 @@
                             <span class="carousel-indicator" onclick="currentSlide(3)"></span>
                         </div>
                     </div>
-                    <p class="capsule-text">还记得那个阳光明媚的下午，我们第一次正式约会。你穿着那件我最喜欢的白色衬衫，笑容如春风般温暖。我们在咖啡厅里聊了整整三个小时，仿佛时间都停止了。</p>
+                    <p class="capsule-text">233天的第一次相约</p>
                     
                     <!-- 爱心按钮 -->
                     <div class="love-buttons-container">
@@ -998,24 +1094,24 @@
                     <div class="capsule-date">2025年10月01日</div>
                 `
             },
-            hand: {
-                title: "第一次牵手",
-                subtitle: "心跳加速的瞬间",
+            confession: {
+                title: "第一次告白",
+                subtitle: "心照不宣的瞬间",
                 content: `
                     <div class="capsule-carousel">
                         <div class="carousel-container">
                             <div class="carousel-slides">
                                 <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="公园小径" class="carousel-image">
-                                    <div class="carousel-caption">公园的浪漫小径</div>
+                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="星空下的告白" class="carousel-image">
+                                    <div class="carousel-caption">星空下的告白</div>
                                 </div>
                                 <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="夕阳西下" class="carousel-image">
-                                    <div class="carousel-caption">夕阳西下的美好时光</div>
+                                    <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="浪漫氛围" class="carousel-image">
+                                    <div class="carousel-caption">浪漫的氛围</div>
                                 </div>
                                 <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="牵手瞬间" class="carousel-image">
-                                    <div class="carousel-caption">那个心跳加速的瞬间</div>
+                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="心意相通" class="carousel-image">
+                                    <div class="carousel-caption">心意相通的时刻</div>
                                 </div>
                             </div>
                             <button class="carousel-controls carousel-prev" onclick="changeSlide(-1)">‹</button>
@@ -1027,16 +1123,14 @@
                             <span class="carousel-indicator" onclick="currentSlide(3)"></span>
                         </div>
                     </div>
-                    <p class="capsule-text">在公园的小径上，你轻轻握住了我的手。那一刻，我感觉整个世界都安静了，只能听到自己的心跳声。你的手很温暖，让我感到前所未有的安全感。</p>
+                    <p class="capsule-text">那个夜晚，星光璀璨，我终于鼓起勇气向你告白。当你微笑着点头说"我也是"的时候，我觉得整个世界的美好都聚集在了这一刻。从那以后，我们的故事正式开始了。</p>
                     
                     <!-- 爱心按钮 -->
                     <div class="love-buttons-container">
-
                         <button class="love-button" onclick="createFloatingHeart(event)">💖</button>
-
                     </div>
                     
-                    <div class="capsule-date">2025年10月01日</div>
+                    <div class="capsule-date">2025年10月1日</div>
                 `
             },
             travel: {
@@ -1047,7 +1141,7 @@
                         <div class="carousel-container">
                             <div class="carousel-slides">
                                 <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="海边城市" class="carousel-image">
+                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="海边城市" class="carousel-image">
                                     <div class="carousel-caption">美丽的海边城市</div>
                                 </div>
                                 <div class="carousel-slide">
@@ -1055,7 +1149,7 @@
                                     <div class="carousel-caption">海浪拍打着礁石</div>
                                 </div>
                                 <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="沙滩漫步" class="carousel-image">
+                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="沙滩漫步" class="carousel-image">
                                     <div class="carousel-caption">沙滩上的浪漫漫步</div>
                                 </div>
                             </div>
@@ -1077,7 +1171,7 @@
 
                     </div>
                     
-                    <div class="capsule-date">2025年10月01日</div>
+                    <div class="capsule-date">2025年10月1日</div>
                 `
             },
             birthday: {
@@ -1114,10 +1208,10 @@
                     <!-- 爱心按钮 -->
                     <div class="love-buttons-container">
 
-                        <button class="love-button" onclick="createFloatingHeart(event)">💓</button>
+                        <button class="love-button" onclick="createFloatingHeart(event)">💖</button>
                     </div>
                     
-                    <div class="capsule-date">2025年10月01日</div>
+                    <div class="capsule-date">2025年10月1日</div>
                 `
             },
             future: {
@@ -1280,6 +1374,9 @@
         }
 
         document.addEventListener('DOMContentLoaded', function () {
+            // 启动爱心飘落动画
+            startFallingHearts();
+            
             // 彤超的生日：十月初八 (农历10月8日)
             convertLunarToSolarAndCountdown(10, 8, 'birthday', 'tongchao-countdown');
             
@@ -1468,6 +1565,4 @@
 
     </script>
 </body>
-
-yigejiao
 </html>
