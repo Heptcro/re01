@@ -276,6 +276,317 @@
             color: white;
         }
         
+        /* 时光胶囊弹窗样式 */
+        .capsule-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .capsule-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .capsule-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease-out;
+        }
+
+        .capsule-header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .capsule-title {
+            font-size: 28px;
+            color: white;
+            margin: 0;
+            font-weight: 300;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .capsule-subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .capsule-close {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .capsule-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .capsule-body {
+            color: white;
+            line-height: 1.8;
+        }
+
+        /* 轮播图容器 */
+        .capsule-carousel {
+            position: relative;
+            max-width: 500px;
+            margin: 20px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* 轮播图控制按钮 */
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-controls:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
+        }
+
+        /* 轮播图指示器 */
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .carousel-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        .capsule-text {
+            font-size: 18px;
+            margin: 20px 0;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .capsule-date {
+            text-align: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* 爱心按钮容器 */
+        .love-buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        /* 爱心按钮样式 */
+        .love-button {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            color: #ff6b6b;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .love-button:hover {
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(255, 255, 255, 0.25);
+            color: #ff4757;
+        }
+
+        /* 爱心动画容器 */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2000;
+        }
+
+        /* 爱心动画样式 */
+        .floating-heart {
+            position: absolute;
+            color: #ff6b6b;
+            font-size: 24px;
+            opacity: 0;
+            animation: floatUp 1.5s ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0.8);
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) scale(0.4);
+                opacity: 0;
+            }
+        }
+
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .capsule-content {
+                padding: 30px 20px;
+                margin: 20px;
+                width: calc(100% - 40px);
+            }
+            
+            .capsule-title {
+                font-size: 24px;
+            }
+            
+            .capsule-image {
+                height: 200px;
+            }
+            
+            .love-buttons-container {
+                gap: 10px;
+            }
+            
+            .love-button {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+        
         footer {
             background-color: #333;
             color: white;
@@ -419,7 +730,7 @@
                 </div>
                 <div class="time_m">
                     <b class="source" id="birthday">2002-11-12</b>
-                    <i class="format"></i>
+                    <i class="format" id="tongchao-countdown"></i>
                 </div>
             </div>
         </div>
@@ -437,8 +748,8 @@
                     <span class="day_title">文慧的生日</span>
                 </div>
                 <div class="time_m">
-                    <b class="source">2002-09-16</b>
-                    <i class="format"></i>
+                    <b class="source" id="wenhui-birthday">2002-09-16</b>
+                    <i class="format" id="wenhui-countdown"></i>
                 </div>
             </div>
         </div>
@@ -449,22 +760,39 @@
             <h2 class="memories-title">爱情宣言</h2>
             
             <div class="quotes-container">
-                <p class="love-quote">"我愿意用一生的时间，陪你看遍四季风景，从清晨到黄昏，从年少到白头。"</p>
-                <p class="quote-author">—— 我们的约定</p>
+                <p id="love-quote" class="love-quote">"我愿意用一生的时间，陪你看遍四季风景，从清晨到黄昏，从年少到白头。"</p>
+                <p id="quote-author" class="quote-author">—— 我们的约定</p>
             </div>
             
             <h3>我们的时光胶囊</h3>
             <p>记录我们每个珍贵的瞬间</p>
             
             <div class="timeline-preview">
-                <div class="timeline-item" title="第一次约会">约会</div>
-                <div class="timeline-item" title="第一次牵手">牵手</div>
-                <div class="timeline-item" title="第一次旅行">旅行</div>
-                <div class="timeline-item" title="第一个生日">生日</div>
-                <div class="timeline-item" title="未来可期">未来</div>
+                <div class="timeline-item" data-capsule="date" title="第一次约会">约会</div>
+                <div class="timeline-item" data-capsule="hand" title="第一次牵手">牵手</div>
+                <div class="timeline-item" data-capsule="travel" title="第一次旅行">旅行</div>
+                <div class="timeline-item" data-capsule="birthday" title="第一个生日">生日</div>
+                <div class="timeline-item" data-capsule="future" title="未来可期">未来</div>
             </div>
         </div>
     </section>
+
+    <!-- 时光胶囊弹窗 -->
+    <div id="capsuleModal" class="capsule-modal">
+        <div class="capsule-content">
+            <div class="capsule-header">
+                <h2 class="capsule-title" id="capsuleTitle">时光胶囊</h2>
+                <p class="capsule-subtitle" id="capsuleSubtitle">珍贵的回忆</p>
+                <button class="capsule-close" onclick="closeCapsule()">&times;</button>
+            </div>
+            <div class="capsule-body" id="capsuleBody">
+                <!-- 动态内容将在这里显示 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 爱心动画容器 -->
+    <div class="hearts-container" id="heartsContainer"></div>
 
     <footer>
         <div class="footer-content">
@@ -473,41 +801,548 @@
         </div>
     </footer>
 
-    <!-- 1. 先引入 lunar 库 -->
-    <script src="https://cdn.jsdelivr.net/npm/lunar-javascript@2.4.1/lib/lunar.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/lunar-javascript@2.4.1/lib/lunar.min.js"></script>
     <script>
-        // 转换农历生日的函数
-        function convertToLunar(elementId, dateStr) {
-            const [year, month, day] = dateStr.split('-').map(Number);
-            const lunar = Lunar.fromDate(new Date(year, month - 1, day));
-            const lunarStr = lunar.getYearInGanZhi() + '年' +
-                lunar.getMonthInChinese() + '月' +
-                lunar.getDayInChinese();
-            document.getElementById(elementId).textContent = lunarStr;
+        // 多年农历转换数据库（2024-2036年）
+        const lunarToSolarDatabase = {
+            2024: {
+                '8-10': '2024-09-12',  // 农历八月初十
+                '10-8': '2024-11-08'   // 农历十月初八
+            },
+            2025: {
+                '8-10': '2025-10-01',  // 农历八月初十
+                '10-8': '2025-11-27'   // 农历十月初八
+            },
+            2026: {
+                '8-10': '2026-09-20',  // 农历八月初十
+                '10-8': '2026-11-16'   // 农历十月初八
+            },
+            2027: {
+                '8-10': '2027-09-29',  // 农历八月初十
+                '10-8': '2027-11-05'   // 农历十月初八
+            },
+            2028: {
+                '8-10': '2028-09-18',  // 农历八月初十
+                '10-8': '2028-10-24'   // 农历十月初八
+            },
+            2029: {
+                '8-10': '2029-10-07',  // 农历八月初十
+                '10-8': '2029-11-13'   // 农历十月初八
+            },
+            2030: {
+                '8-10': '2030-09-26',  // 农历八月初十
+                '10-8': '2030-11-02'   // 农历十月初八
+            },
+            2031: {
+                '8-10': '2031-09-15',  // 农历八月初十
+                '10-8': '2031-10-22'   // 农历十月初八
+            },
+            2032: {
+                '8-10': '2032-10-03',  // 农历八月初十
+                '10-8': '2032-11-10'   // 农历十月初八
+            },
+            2033: {
+                '8-10': '2033-09-22',  // 农历八月初十
+                '10-8': '2033-10-30'   // 农历十月初八
+            },
+            2034: {
+                '8-10': '2034-09-11',  // 农历八月初十
+                '10-8': '2034-10-19'   // 农历十月初八
+            },
+            2035: {
+                '8-10': '2035-09-30',  // 农历八月初十
+                '10-8': '2035-11-07'   // 农历十月初八
+            },
+            2036: {
+                '8-10': '2036-09-18',  // 农历八月初十
+                '10-8': '2036-10-26'   // 农历十月初八
+            }
+        };
+
+        // 精确的农历生日处理函数
+        function convertLunarToSolarAndCountdown(lunarMonth, lunarDay, elementId, countdownElementId) {
+            const currentDate = new Date();
+            const currentYear = currentDate.getFullYear();
+            const key = `${lunarMonth}-${lunarDay}`;
+            
+            // 查找当前年份的农历对应日期
+            let solarDateStr = null;
+            let targetYear = currentYear;
+            
+            // 先检查当前年份
+            if (lunarToSolarDatabase[currentYear] && lunarToSolarDatabase[currentYear][key]) {
+                solarDateStr = lunarToSolarDatabase[currentYear][key];
+                targetYear = currentYear;
+            } else {
+                // 如果当前年份没有数据，查找最近的有数据的年份
+                for (let year = currentYear; year <= currentYear + 2; year++) {
+                    if (lunarToSolarDatabase[year] && lunarToSolarDatabase[year][key]) {
+                        solarDateStr = lunarToSolarDatabase[year][key];
+                        targetYear = year;
+                        break;
+                    }
+                }
+            }
+            
+            if (solarDateStr) {
+                // 使用数据库中的准确数据
+                document.getElementById(elementId).textContent = solarDateStr;
+                
+                // 计算倒计时
+                const [year, month, day] = solarDateStr.split('-').map(Number);
+                let thisYearBirthday = new Date(year, month - 1, day);
+                
+                // 如果今年的生日已经过了，查找下一年的生日
+                if (thisYearBirthday < currentDate) {
+                    // 查找下一年的农历对应日期
+                    let nextYearBirthday = null;
+                    for (let nextYear = year + 1; nextYear <= year + 3; nextYear++) {
+                        if (lunarToSolarDatabase[nextYear] && lunarToSolarDatabase[nextYear][key]) {
+                            const nextSolarDate = lunarToSolarDatabase[nextYear][key];
+                            const [nextYearNum, nextMonth, nextDay] = nextSolarDate.split('-').map(Number);
+                            nextYearBirthday = new Date(nextYearNum, nextMonth - 1, nextDay);
+                            break;
+                        }
+                    }
+                    
+                    if (nextYearBirthday) {
+                        thisYearBirthday = nextYearBirthday;
+                    } else {
+                        // 如果没有找到下一年的数据，使用估算
+                        thisYearBirthday = new Date(year + 1, month - 1, day);
+                    }
+                }
+                
+                const timeDiff = thisYearBirthday - currentDate;
+                const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+                
+                if (daysDiff === 0) {
+                    document.getElementById(countdownElementId).textContent = '生日快乐！🎉';
+                } else if (daysDiff < 0) {
+                    document.getElementById(countdownElementId).textContent = `已过 ${Math.abs(daysDiff)} 天`;
+                } else {
+                    document.getElementById(countdownElementId).textContent = `还有 ${daysDiff} 天`;
+                }
+            } else {
+                // 如果数据库中没有数据，使用简化的转换
+                let solarMonth = lunarMonth + 1;
+                let solarDay = lunarDay;
+                
+                if (solarMonth > 12) {
+                    solarMonth = solarMonth - 12;
+                }
+                
+                if (solarDay > 30) {
+                    solarDay = 30;
+                }
+                
+                const solarDateStr = `${currentYear}-${String(solarMonth).padStart(2, '0')}-${String(solarDay).padStart(2, '0')}`;
+                document.getElementById(elementId).textContent = solarDateStr;
+                
+                let thisYearBirthday = new Date(currentYear, solarMonth - 1, solarDay);
+                if (thisYearBirthday < currentDate) {
+                    thisYearBirthday = new Date(currentYear + 1, solarMonth - 1, solarDay);
+                }
+                
+                const timeDiff = thisYearBirthday - currentDate;
+                const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+                
+                if (daysDiff === 0) {
+                    document.getElementById(countdownElementId).textContent = '生日快乐！🎉';
+                } else if (daysDiff < 0) {
+                    document.getElementById(countdownElementId).textContent = `已过 ${Math.abs(daysDiff)} 天`;
+                } else {
+                    document.getElementById(countdownElementId).textContent = `还有 ${daysDiff} 天`;
+                }
+            }
+        }
+
+        // 时光胶囊内容数据 - 已替换为爱心按钮
+        const capsuleData = {
+            date: {
+                title: "第一次约会",
+                subtitle: "那个美好的开始",
+                content: `
+                    <div class="capsule-carousel">
+                        <div class="carousel-container">
+                            <div class="carousel-slides">
+                                <div class="carousel-slide">
+                                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="咖啡厅" class="carousel-image">
+                                    <div class="carousel-caption">温馨的邂逅</div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="阳光午后" class="carousel-image">
+                                    <div class="carousel-caption">阳光明媚的午后</div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="聊天时光" class="carousel-image">
+                                    <div class="carousel-caption">愉快的聊天时光</div>
+                                </div>
+                            </div>
+                            <button class="carousel-controls carousel-prev" onclick="changeSlide(-1)">‹</button>
+                            <button class="carousel-controls carousel-next" onclick="changeSlide(1)">›</button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <span class="carousel-indicator active" onclick="currentSlide(1)"></span>
+                            <span class="carousel-indicator" onclick="currentSlide(2)"></span>
+                            <span class="carousel-indicator" onclick="currentSlide(3)"></span>
+                        </div>
+                    </div>
+                    <p class="capsule-text">还记得那个阳光明媚的下午，我们第一次正式约会。你穿着那件我最喜欢的白色衬衫，笑容如春风般温暖。我们在咖啡厅里聊了整整三个小时，仿佛时间都停止了。</p>
+                    
+                    <!-- 爱心按钮 -->
+                    <div class="love-buttons-container">
+                        <button class="love-button" onclick="createFloatingHeart(event)">❤️</button>
+
+                    </div>
+                    
+                    <div class="capsule-date">2025年10月01日</div>
+                `
+            },
+            hand: {
+                title: "第一次牵手",
+                subtitle: "心跳加速的瞬间",
+                content: `
+                    <div class="capsule-carousel">
+                        <div class="carousel-container">
+                            <div class="carousel-slides">
+                                <div class="carousel-slide">
+                                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="公园小径" class="carousel-image">
+                                    <div class="carousel-caption">公园的浪漫小径</div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="夕阳西下" class="carousel-image">
+                                    <div class="carousel-caption">夕阳西下的美好时光</div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="牵手瞬间" class="carousel-image">
+                                    <div class="carousel-caption">那个心跳加速的瞬间</div>
+                                </div>
+                            </div>
+                            <button class="carousel-controls carousel-prev" onclick="changeSlide(-1)">‹</button>
+                            <button class="carousel-controls carousel-next" onclick="changeSlide(1)">›</button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <span class="carousel-indicator active" onclick="currentSlide(1)"></span>
+                            <span class="carousel-indicator" onclick="currentSlide(2)"></span>
+                            <span class="carousel-indicator" onclick="currentSlide(3)"></span>
+                        </div>
+                    </div>
+                    <p class="capsule-text">在公园的小径上，你轻轻握住了我的手。那一刻，我感觉整个世界都安静了，只能听到自己的心跳声。你的手很温暖，让我感到前所未有的安全感。</p>
+                    
+                    <!-- 爱心按钮 -->
+                    <div class="love-buttons-container">
+
+                        <button class="love-button" onclick="createFloatingHeart(event)">💖</button>
+
+                    </div>
+                    
+                    <div class="capsule-date">2025年10月01日</div>
+                `
+            },
+            travel: {
+                title: "第一次旅行",
+                subtitle: "一起看世界",
+                content: `
+                    <div class="capsule-carousel">
+                        <div class="carousel-container">
+                            <div class="carousel-slides">
+                                <div class="carousel-slide">
+                                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="海边城市" class="carousel-image">
+                                    <div class="carousel-caption">美丽的海边城市</div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="海浪礁石" class="carousel-image">
+                                    <div class="carousel-caption">海浪拍打着礁石</div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="沙滩漫步" class="carousel-image">
+                                    <div class="carousel-caption">沙滩上的浪漫漫步</div>
+                                </div>
+                            </div>
+                            <button class="carousel-controls carousel-prev" onclick="changeSlide(-1)">‹</button>
+                            <button class="carousel-controls carousel-next" onclick="changeSlide(1)">›</button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <span class="carousel-indicator active" onclick="currentSlide(1)"></span>
+                            <span class="carousel-indicator" onclick="currentSlide(2)"></span>
+                            <span class="carousel-indicator" onclick="currentSlide(3)"></span>
+                        </div>
+                    </div>
+                    <p class="capsule-text">我们第一次一起旅行，去了那个美丽的海边城市。看着海浪拍打着礁石，听着海鸥的叫声，我们许下了要一起看遍世界每一个角落的愿望。</p>
+                    
+                    <!-- 爱心按钮 -->
+                    <div class="love-buttons-container">
+
+                        <button class="love-button" onclick="createFloatingHeart(event)">💘</button>
+
+                    </div>
+                    
+                    <div class="capsule-date">2025年10月01日</div>
+                `
+            },
+            birthday: {
+                title: "第一个生日",
+                subtitle: "为你庆祝的特别日子",
+                content: `
+                    <div class="capsule-carousel">
+                        <div class="carousel-container">
+                            <div class="carousel-slides">
+                                <div class="carousel-slide">
+                                    <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="生日蛋糕" class="carousel-image">
+                                    <div class="carousel-caption">精心准备的生日蛋糕</div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="惊喜派对" class="carousel-image">
+                                    <div class="carousel-caption">惊喜生日派对</div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="吹蜡烛" class="carousel-image">
+                                    <div class="carousel-caption">许愿吹蜡烛的瞬间</div>
+                                </div>
+                            </div>
+                            <button class="carousel-controls carousel-prev" onclick="changeSlide(-1)">‹</button>
+                            <button class="carousel-controls carousel-next" onclick="changeSlide(1)">›</button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <span class="carousel-indicator active" onclick="currentSlide(1)"></span>
+                            <span class="carousel-indicator" onclick="currentSlide(2)"></span>
+                            <span class="carousel-indicator" onclick="currentSlide(3)"></span>
+                        </div>
+                    </div>
+                    <p class="capsule-text">你的第一个生日，我精心准备了一个惊喜派对。看着你吹蜡烛时开心的样子，我知道这就是我想要守护的笑容。愿你的每一个生日都如此快乐。</p>
+                    
+                    <!-- 爱心按钮 -->
+                    <div class="love-buttons-container">
+
+                        <button class="love-button" onclick="createFloatingHeart(event)">💓</button>
+                    </div>
+                    
+                    <div class="capsule-date">2025年10月01日</div>
+                `
+            },
+            future: {
+                title: "未来可期",
+                subtitle: "我们的美好憧憬",
+                content: `
+                    <div class="capsule-carousel">
+                        <div class="carousel-container">
+                            <div class="carousel-slides">
+                                <div class="carousel-slide">
+                                    <img src="ptc-avatar.svg" alt="环游世界" class="carousel-image">
+                                    <div class="carousel-caption">一起看遍世界的美景</div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="温馨的家" class="carousel-image">
+                                    <div class="carousel-caption">温馨的小家庭</div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="美好未来" class="carousel-image">
+                                    <div class="carousel-caption">美好的未来憧憬</div>
+                                </div>
+                            </div>
+                            <button class="carousel-controls carousel-prev" onclick="changeSlide(-1)">‹</button>
+                            <button class="carousel-controls carousel-next" onclick="changeSlide(1)">›</button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <span class="carousel-indicator active" onclick="currentSlide(1)"></span>
+                            <span class="carousel-indicator" onclick="currentSlide(2)"></span>
+                            <span class="carousel-indicator" onclick="currentSlide(3)"></span>
+                        </div>
+                    </div>
+                    <p class="capsule-text">未来有太多美好的事情等着我们去经历：一起看遍世界的美景，一起度过每一个节日，一起变老，一起创造更多珍贵的回忆。我们的故事，才刚刚开始。</p>
+                    
+                    <!-- 爱心按钮 -->
+                    <div class="love-buttons-container">
+                        <button class="love-button" onclick="createFloatingHeart(event)">❤️</button>
+
+                    </div>
+                    
+                    <div class="capsule-date">永远的未来</div>
+                `
+            }
+        };
+
+        // 轮播图控制变量
+        let currentSlideIndex = 0;
+        let totalSlides = 0;
+
+        // 轮播图控制函数
+        function changeSlide(direction) {
+            const slides = document.querySelector('.carousel-slides');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            
+            if (!slides) return;
+            
+            currentSlideIndex += direction;
+            
+            // 循环播放
+            if (currentSlideIndex >= totalSlides) {
+                currentSlideIndex = 0;
+            } else if (currentSlideIndex < 0) {
+                currentSlideIndex = totalSlides - 1;
+            }
+            
+            // 移动幻灯片
+            slides.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+            
+            // 更新指示器
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlideIndex);
+            });
+        }
+
+        function currentSlide(slideNumber) {
+            currentSlideIndex = slideNumber - 1;
+            const slides = document.querySelector('.carousel-slides');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            
+            if (slides) {
+                slides.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+            }
+            
+            // 更新指示器
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlideIndex);
+            });
+        }
+
+        // 创建漂浮爱心动画
+        function createFloatingHeart(event) {
+            // 阻止事件冒泡
+            event.stopPropagation();
+            
+            // 获取点击位置
+            const x = event.clientX;
+            const y = event.clientY;
+            
+            // 创建爱心元素
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            
+            // 随机选择不同的爱心表情
+            const hearts = ['❤️', '💖', '💘', '💓', '💗', '💕'];
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            
+            // 设置初始位置
+            heart.style.left = `${x}px`;
+            heart.style.top = `${y}px`;
+            
+            // 添加到容器
+            const container = document.getElementById('heartsContainer');
+            container.appendChild(heart);
+            
+            // 动画结束后移除元素
+            setTimeout(() => {
+                heart.remove();
+            }, 1500);
+        }
+
+        // 时光胶囊相关函数
+        function openCapsule(capsuleType) {
+            const modal = document.getElementById('capsuleModal');
+            const title = document.getElementById('capsuleTitle');
+            const subtitle = document.getElementById('capsuleSubtitle');
+            const body = document.getElementById('capsuleBody');
+            
+            const data = capsuleData[capsuleType];
+            if (data) {
+                title.textContent = data.title;
+                subtitle.textContent = data.subtitle;
+                body.innerHTML = data.content;
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden'; // 防止背景滚动
+                
+                // 重置轮播图
+                currentSlideIndex = 0;
+                totalSlides = document.querySelectorAll('.carousel-slide').length;
+                
+                // 初始化轮播图
+                setTimeout(() => {
+                    const slides = document.querySelector('.carousel-slides');
+                    if (slides) {
+                        slides.style.transform = 'translateX(0%)';
+                    }
+                }, 100);
+            }
+        }
+
+        function closeCapsule() {
+            const modal = document.getElementById('capsuleModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto'; // 恢复滚动
+        }
+
+        // 点击背景关闭弹窗
+        function handleModalClick(event) {
+            if (event.target === event.currentTarget) {
+                closeCapsule();
+            }
         }
 
         document.addEventListener('DOMContentLoaded', function () {
-            // 转换彤超的生日
-            const tongchaoDate = document.getElementById('birthday').textContent;
-            convertToLunar('birthday', tongchaoDate);
+            // 彤超的生日：十月初八 (农历10月8日)
+            convertLunarToSolarAndCountdown(10, 8, 'birthday', 'tongchao-countdown');
+            
+            // 文慧的生日：八月初十 (农历8月10日)
+            convertLunarToSolarAndCountdown(8, 10, 'wenhui-birthday', 'wenhui-countdown');
 
-            // 转换文慧的生日（需要先给她的日期元素加一个 id）
-            const wenhuiDateElement = document.querySelector('.row:nth-child(2) .time_card:nth-child(2) .source');
-            const wenhuiDateStr = wenhuiDateElement.textContent.trim();
-            // 动态添加 id 或直接操作
-            const tempId = 'wenhui-birthday';
-            wenhuiDateElement.id = tempId;
-            convertToLunar(tempId, wenhuiDateStr);
+            // 个性化当天生日祝福
+            setTimeout(function () {
+                const tc = document.getElementById('tongchao-countdown');
+                if (tc && tc.textContent.includes('生日快乐')) {
+                    tc.textContent = '彤超生日快乐！🎉';
+                }
+                const wh = document.getElementById('wenhui-countdown');
+                if (wh && wh.textContent.includes('生日快乐')) {
+                    wh.textContent = '文慧生日快乐！🎉';
+                }
+            }, 0);
+
+            // 时光胶囊点击事件
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const capsuleType = this.getAttribute('data-capsule');
+                    openCapsule(capsuleType);
+                });
+            });
+
+            // 弹窗背景点击事件
+            const modal = document.getElementById('capsuleModal');
+            modal.addEventListener('click', handleModalClick);
+
+            // ESC键关闭弹窗
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeCapsule();
+                }
+            });
         });
 
-        // 你原有的时间计算逻辑，保持不变
+        // 时间计算逻辑
         function formatToISO8601(dateStr) {
             var parts = dateStr.split(' ');
             var dateParts = parts[0].split('-');
             var timeParts = parts[1].split(':');
             return dateParts[0] + '-' + (dateParts[1].length === 1 ? '0' : '') + dateParts[1] + '-' + (dateParts[2].length === 1 ? '0' : '') + dateParts[2] + 'T' + timeParts[0] + ':' + timeParts[1] + ':' + timeParts[2];
+        }
+
+        // 数字转中文（1-99）
+        function numberToChinese(num) {
+            var cnNums = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+            if (num <= 10) {
+                if (num === 10) return '十';
+                return cnNums[num];
+            }
+            if (num < 20) {
+                return '十' + (num % 10 === 0 ? '' : cnNums[num % 10]);
+            }
+            if (num < 100) {
+                var tens = Math.floor(num / 10);
+                var ones = num % 10;
+                return cnNums[tens] + '十' + (ones === 0 ? '' : cnNums[ones]);
+            }
+            return String(num);
         }
 
         var startDateStr = '2025-2-19 20:59:00';
@@ -530,18 +1365,32 @@
         updateTime();
         setInterval(updateTime, 1000);
 
-        // 周年纪念日倒计时
+        // 周年纪念日倒计时/祝福
         document.addEventListener('DOMContentLoaded', function () {
             const anniversaryDateElement = document.getElementById('anniversaryDate');
             const countdownElement = document.getElementById('countdownDisplay');
             if (anniversaryDateElement) {
                 const anniversaryStr = anniversaryDateElement.textContent;
                 const [year, month, day] = anniversaryStr.split('-').map(Number);
-                const nextAnniversary = new Date(year + 1, month - 1, day);
                 const currentDate = new Date();
-                const timeDiff = nextAnniversary - currentDate;
-                const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-                countdownElement.textContent = `还有 ${daysDiff} 天`;
+                // 今天是否为纪念日（月日相同）
+                const isTodayAnniversary = (currentDate.getMonth() + 1) === month && currentDate.getDate() === day;
+                if (isTodayAnniversary) {
+                    const years = currentDate.getFullYear() - year;
+                    countdownElement.textContent = years > 0 ? `${numberToChinese(years)}周年快乐！` : '今天是我们的纪念日！';
+                } else {
+                    // 距离下一次纪念日
+                    const nextAnniversary = new Date(
+                        (currentDate.getMonth() + 1 > month) || ((currentDate.getMonth() + 1 === month) && currentDate.getDate() > day)
+                            ? currentDate.getFullYear() + 1
+                            : currentDate.getFullYear(),
+                        month - 1,
+                        day
+                    );
+                    const timeDiff = nextAnniversary - currentDate;
+                    const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+                    countdownElement.textContent = `还有 ${daysDiff} 天`;
+                }
             }
         });
 
@@ -554,37 +1403,71 @@
                 const [year, month, day] = meetDateStr.split('-').map(Number);
                 const meetDate = new Date(year, month - 1, day);
                 const currentDate = new Date();
-                const timeDiff = currentDate - meetDate;
-                const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-                countdownElement.textContent = `过了 ${daysDiff} 天`;
+                const msPerDay = 1000 * 60 * 60 * 24;
+                const rawDiff = meetDate - currentDate;
+                const daysAbs = Math.ceil(Math.abs(rawDiff) / msPerDay);
+
+                if (Math.abs(rawDiff) < msPerDay) {
+                    countdownElement.textContent = '就是今天！';
+                } else if (rawDiff > 0) {
+                    countdownElement.textContent = `还有 ${daysAbs} 天`;
+                } else {
+                    countdownElement.textContent = `过了 ${daysAbs} 天`;
+                }
             }
         });
 
-        // 生日倒计时（农历不影响倒计时天数）
+        // 爱情宣言随机语录
         document.addEventListener('DOMContentLoaded', function () {
-            const birthdayElements = document.querySelectorAll('.source');
-            const countdownElements = document.querySelectorAll('.format');
-
-            birthdayElements.forEach((element, index) => {
-                const birthdayStr = element.textContent;
-                const [birthYear, birthMonth, birthDay] = birthdayStr.split('-').map(Number);
-
-                const currentDate = new Date();
-                const currentYear = currentDate.getFullYear();
-                let thisYearBirthday = new Date(currentYear, birthMonth - 1, birthDay);
-
-                if (thisYearBirthday < currentDate) {
-                    thisYearBirthday = new Date(currentYear + 1, birthMonth - 1, birthDay);
-                }
-
-                const timeDiff = thisYearBirthday - currentDate;
-                const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-                countdownElements[index].textContent = `还有${daysDiff}天`;
-            });
+            var quotes = [
+                '我愿与你，走过春夏秋冬的每一道风景。',
+                '想把世间温柔都给你，把所有日子都变甜。',
+                '你的名字，是我写在心上的一封情书。',
+                '余生很长，幸好有你，同看暮色与朝阳。',
+                '把星河揣进口袋，把你放在心尖上。',
+                '山海有归期，风雨有相逢，而你有我。',
+                '想把每一次心动，都认真记录成永远。',
+                '岁月缓缓，我在你左右，与你共温一壶人间烟火。',
+                '愿陪你看遍人间万千，仍觉你最好看。',
+                '你是我的答案，所以我从不犹豫。',
+                '我会把所有温柔留给你，把所有好运也分给你。',
+                '把日落和晚风都给你，把拥抱和偏爱也给你。',
+                '我跨过山海，只为在黄昏与你并肩。',
+                '愿将余生所有热爱，按份额分给你和明天。',
+                '你是四季，也是人间，还是我唯一的心愿。',
+                '想把不动声色都藏好，只在你面前温柔失守。',
+                '若世界喧哗，我做你的树与风。',
+                '世事繁杂，你是我心中最简洁的答案。',
+                '所有的路，最后都想通向你。',
+                '你一笑，人间就多点晴朗。',
+                '我愿做你的避风港，也做你的星辰大海。',
+                '喜欢有迹可循，爱你无须证明。',
+                '我把每一分思念都认真存档，等与你一一兑现。',
+                '从今以后，风日清和，皆为你来。'
+            ];
+            var authors = [
+                '—— 我们的约定',
+                '—— 我们的小幸福',
+                '—— 致最爱的你',
+                '—— 心之所向',
+                '—— 只为你写',
+                '—— 共白首',
+                '—— 朝朝暮暮',
+                '—— 人间烟火里',
+                '—— 见字如面',
+                '—— 与你同行'
+            ];
+            function pickRandom(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+            var quoteEl = document.getElementById('love-quote');
+            var authorEl = document.getElementById('quote-author');
+            if (quoteEl && authorEl) {
+                quoteEl.textContent = '"' + pickRandom(quotes) + '"';
+                authorEl.textContent = pickRandom(authors);
+            }
         });
+
     </script>
 </body>
 
-
+yigejiao
 </html>
-
