@@ -399,124 +399,9 @@
         .capsule-body {
             color: white;
             line-height: 1.8;
-        }
-
-        /* 轮播图容器 */
-        .capsule-carousel {
-            position: relative;
-            max-width: 500px;
-            margin: 20px auto;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            height: 280px;
-            overflow: hidden;
-        }
-
-        .carousel-slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            height: 100%;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-        .carousel-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .carousel-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-            color: white;
-            padding: 20px;
-            font-size: 14px;
             text-align: center;
-        }
-
-        /* 轮播图控制按钮 */
-        .carousel-controls {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .carousel-controls:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .carousel-prev {
-            left: 10px;
-        }
-
-        .carousel-next {
-            right: 10px;
-        }
-
-        /* 轮播图指示器 */
-        .carousel-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .carousel-indicator {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .carousel-indicator.active {
-            background: white;
-            transform: scale(1.2);
-        }
-
-        .capsule-text {
-            font-size: 18px;
-            margin: 20px 0;
-            text-align: center;
-            font-style: italic;
-        }
-
-        .capsule-date {
-            text-align: center;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 20px 0;
+            font-size: 24px;
         }
 
         /* 爱心按钮容器 */
@@ -614,8 +499,8 @@
                 font-size: 24px;
             }
             
-            .capsule-image {
-                height: 200px;
+            .capsule-body {
+                font-size: 20px;
             }
             
             .love-buttons-container {
@@ -801,7 +686,8 @@
             </div>
         </div>
     </div>
-     <!-- 底部创意区域 -->
+
+    <!-- 底部创意区域 -->
     <section class="memories-section">
         <div class="memories-container">
             <h2 class="memories-title">留言墙</h2>
@@ -815,10 +701,10 @@
             <p>记录我们每个珍贵的瞬间</p>
             
             <div class="timeline-preview">
-                <div class="timeline-item" data-capsule="date" title="第一次约会">约会</div>
-                <div class="timeline-item" data-capsule="confession" title="第一次告白">告白</div>
-                <div class="timeline-item" data-capsule="travel" title="第一次旅行">旅行</div>
-                <div class="timeline-item" data-capsule="birthday" title="第一个生日">生日</div>
+                <div class="timeline-item" data-capsule="confession" title="瞬间">瞬间</div>
+                <div class="timeline-item" data-capsule="date" title="陪伴">陪伴</div>
+                <div class="timeline-item" data-capsule="birthday" title="生日">生日</div>
+                <div class="timeline-item" data-capsule="travel" title="旅行">旅行</div>
                 <div class="timeline-item" data-capsule="future" title="未来可期">未来</div>
             </div>
         </div>
@@ -834,6 +720,12 @@
             </div>
             <div class="capsule-body" id="capsuleBody">
                 <!-- 动态内容将在这里显示 -->
+                故事待续……
+            </div>
+            
+            <!-- 爱心按钮 -->
+            <div class="love-buttons-container">
+                <button class="love-button" onclick="createFloatingHeart(event)">❤️</button>
             </div>
         </div>
     </div>
@@ -1052,254 +944,6 @@
             }
         }
 
-        // 时光胶囊内容数据
-        const capsuleData = {
-            date: {
-                title: "第一次约会",
-                subtitle: "美好的开始",
-                content: `
-                    <div class="capsule-carousel">
-                        <div class="carousel-container">
-                            <div class="carousel-slides">
-                                <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="？？" class="carousel-image">
-                                   
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="阳光午后" class="carousel-image">
-                                 
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="聊天时光" class="carousel-image">
-                               
-                                </div>
-                            </div>
-                            <button class="carousel-controls carousel-prev" onclick="changeSlide(-1)">‹</button>
-                            <button class="carousel-controls carousel-next" onclick="changeSlide(1)">›</button>
-                        </div>
-                        <div class="carousel-indicators">
-                            <span class="carousel-indicator active" onclick="currentSlide(1)"></span>
-                            <span class="carousel-indicator" onclick="currentSlide(2)"></span>
-                            <span class="carousel-indicator" onclick="currentSlide(3)"></span>
-                        </div>
-                    </div>
-                    <p class="capsule-text">233天的第一次相约</p>
-                    
-                    <!-- 爱心按钮 -->
-                    <div class="love-buttons-container">
-                        <button class="love-button" onclick="createFloatingHeart(event)">❤️</button>
-
-                    </div>
-                    
-                    <div class="capsule-date">2025年10月01日</div>
-                `
-            },
-            confession: {
-                title: "第一次告白",
-                subtitle: "心照不宣的瞬间",
-                content: `
-                    <div class="capsule-carousel">
-                        <div class="carousel-container">
-                            <div class="carousel-slides">
-                                <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="星空下的告白" class="carousel-image">
-                                    <div class="carousel-caption">星空下的告白</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="浪漫氛围" class="carousel-image">
-                                    <div class="carousel-caption">浪漫的氛围</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="心意相通" class="carousel-image">
-                                    <div class="carousel-caption">心意相通的时刻</div>
-                                </div>
-                            </div>
-                            <button class="carousel-controls carousel-prev" onclick="changeSlide(-1)">‹</button>
-                            <button class="carousel-controls carousel-next" onclick="changeSlide(1)">›</button>
-                        </div>
-                        <div class="carousel-indicators">
-                            <span class="carousel-indicator active" onclick="currentSlide(1)"></span>
-                            <span class="carousel-indicator" onclick="currentSlide(2)"></span>
-                            <span class="carousel-indicator" onclick="currentSlide(3)"></span>
-                        </div>
-                    </div>
-                    <p class="capsule-text">那个夜晚，星光璀璨，我终于鼓起勇气向你告白。当你微笑着点头说"我也是"的时候，我觉得整个世界的美好都聚集在了这一刻。从那以后，我们的故事正式开始了。</p>
-                    
-                    <!-- 爱心按钮 -->
-                    <div class="love-buttons-container">
-                        <button class="love-button" onclick="createFloatingHeart(event)">💖</button>
-                    </div>
-                    
-                    <div class="capsule-date">2025年10月1日</div>
-                `
-            },
-            travel: {
-                title: "第一次旅行",
-                subtitle: "一起看世界",
-                content: `
-                    <div class="capsule-carousel">
-                        <div class="carousel-container">
-                            <div class="carousel-slides">
-                                <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="海边城市" class="carousel-image">
-                                    <div class="carousel-caption">美丽的海边城市</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="海浪礁石" class="carousel-image">
-                                    <div class="carousel-caption">海浪拍打着礁石</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="沙滩漫步" class="carousel-image">
-                                    <div class="carousel-caption">沙滩上的浪漫漫步</div>
-                                </div>
-                            </div>
-                            <button class="carousel-controls carousel-prev" onclick="changeSlide(-1)">‹</button>
-                            <button class="carousel-controls carousel-next" onclick="changeSlide(1)">›</button>
-                        </div>
-                        <div class="carousel-indicators">
-                            <span class="carousel-indicator active" onclick="currentSlide(1)"></span>
-                            <span class="carousel-indicator" onclick="currentSlide(2)"></span>
-                            <span class="carousel-indicator" onclick="currentSlide(3)"></span>
-                        </div>
-                    </div>
-                    <p class="capsule-text">我们第一次一起旅行，去了那个美丽的海边城市。看着海浪拍打着礁石，听着海鸥的叫声，我们许下了要一起看遍世界每一个角落的愿望。</p>
-                    
-                    <!-- 爱心按钮 -->
-                    <div class="love-buttons-container">
-
-                        <button class="love-button" onclick="createFloatingHeart(event)">💘</button>
-
-                    </div>
-                    
-                    <div class="capsule-date">2025年10月1日</div>
-                `
-            },
-            birthday: {
-                title: "第一个生日",
-                subtitle: "为你庆祝的特别日子",
-                content: `
-                    <div class="capsule-carousel">
-                        <div class="carousel-container">
-                            <div class="carousel-slides">
-                                <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="生日蛋糕" class="carousel-image">
-                                    <div class="carousel-caption">精心准备的生日蛋糕</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="惊喜派对" class="carousel-image">
-                                    <div class="carousel-caption">惊喜生日派对</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="吹蜡烛" class="carousel-image">
-                                    <div class="carousel-caption">许愿吹蜡烛的瞬间</div>
-                                </div>
-                            </div>
-                            <button class="carousel-controls carousel-prev" onclick="changeSlide(-1)">‹</button>
-                            <button class="carousel-controls carousel-next" onclick="changeSlide(1)">›</button>
-                        </div>
-                        <div class="carousel-indicators">
-                            <span class="carousel-indicator active" onclick="currentSlide(1)"></span>
-                            <span class="carousel-indicator" onclick="currentSlide(2)"></span>
-                            <span class="carousel-indicator" onclick="currentSlide(3)"></span>
-                        </div>
-                    </div>
-                    <p class="capsule-text">你的第一个生日，我精心准备了一个惊喜派对。看着你吹蜡烛时开心的样子，我知道这就是我想要守护的笑容。愿你的每一个生日都如此快乐。</p>
-                    
-                    <!-- 爱心按钮 -->
-                    <div class="love-buttons-container">
-
-                        <button class="love-button" onclick="createFloatingHeart(event)">💖</button>
-                    </div>
-                    
-                    <div class="capsule-date">2025年10月1日</div>
-                `
-            },
-            future: {
-                title: "未来可期",
-                subtitle: "我们的美好憧憬",
-                content: `
-                    <div class="capsule-carousel">
-                        <div class="carousel-container">
-                            <div class="carousel-slides">
-                                <div class="carousel-slide">
-                                    <img src="ptc-avatar.svg" alt="环游世界" class="carousel-image">
-                                    <div class="carousel-caption">一起看遍世界的美景</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="温馨的家" class="carousel-image">
-                                    <div class="carousel-caption">温馨的小家庭</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="美好未来" class="carousel-image">
-                                    <div class="carousel-caption">美好的未来憧憬</div>
-                                </div>
-                            </div>
-                            <button class="carousel-controls carousel-prev" onclick="changeSlide(-1)">‹</button>
-                            <button class="carousel-controls carousel-next" onclick="changeSlide(1)">›</button>
-                        </div>
-                        <div class="carousel-indicators">
-                            <span class="carousel-indicator active" onclick="currentSlide(1)"></span>
-                            <span class="carousel-indicator" onclick="currentSlide(2)"></span>
-                            <span class="carousel-indicator" onclick="currentSlide(3)"></span>
-                        </div>
-                    </div>
-                    <p class="capsule-text">未来有太多美好的事情等着我们去经历：一起看遍世界的美景，一起度过每一个节日，一起变老，一起创造更多珍贵的回忆。我们的故事，才刚刚开始。</p>
-                    
-                    <!-- 爱心按钮 -->
-                    <div class="love-buttons-container">
-                        <button class="love-button" onclick="createFloatingHeart(event)">❤️</button>
-
-                    </div>
-                    
-                    <div class="capsule-date">永远的未来</div>
-                `
-            }
-        };
-
-        // 轮播图控制变量
-        let currentSlideIndex = 0;
-        let totalSlides = 0;
-
-        // 轮播图控制函数
-        function changeSlide(direction) {
-            const slides = document.querySelector('.carousel-slides');
-            const indicators = document.querySelectorAll('.carousel-indicator');
-            
-            if (!slides) return;
-            
-            currentSlideIndex += direction;
-            
-            // 循环播放
-            if (currentSlideIndex >= totalSlides) {
-                currentSlideIndex = 0;
-            } else if (currentSlideIndex < 0) {
-                currentSlideIndex = totalSlides - 1;
-            }
-            
-            // 移动幻灯片
-            slides.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
-            
-            // 更新指示器
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentSlideIndex);
-            });
-        }
-
-        function currentSlide(slideNumber) {
-            currentSlideIndex = slideNumber - 1;
-            const slides = document.querySelector('.carousel-slides');
-            const indicators = document.querySelectorAll('.carousel-indicator');
-            
-            if (slides) {
-                slides.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
-            }
-            
-            // 更新指示器
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentSlideIndex);
-            });
-        }
-
         // 创建漂浮爱心动画
         function createFloatingHeart(event) {
             // 阻止事件冒泡
@@ -1336,28 +980,20 @@
             const modal = document.getElementById('capsuleModal');
             const title = document.getElementById('capsuleTitle');
             const subtitle = document.getElementById('capsuleSubtitle');
-            const body = document.getElementById('capsuleBody');
             
-            const data = capsuleData[capsuleType];
-            if (data) {
-                title.textContent = data.title;
-                subtitle.textContent = data.subtitle;
-                body.innerHTML = data.content;
-                modal.classList.add('show');
-                document.body.style.overflow = 'hidden'; // 防止背景滚动
-                
-                // 重置轮播图
-                currentSlideIndex = 0;
-                totalSlides = document.querySelectorAll('.carousel-slide').length;
-                
-                // 初始化轮播图
-                setTimeout(() => {
-                    const slides = document.querySelector('.carousel-slides');
-                    if (slides) {
-                        slides.style.transform = 'translateX(0%)';
-                    }
-                }, 100);
-            }
+            // 根据点击的胶囊类型设置标题
+            const titles = {
+                    date: "定格在每一帧的点滴瞬间”",
+                    confession: "陪伴是最长情的告白",
+                    travel: "并肩走过的路成为具象的藏宝图",
+                    birthday: "可以许愿的不一定是流星",
+                    future: "赴一场名为余生的约"
+            };
+            
+            title.textContent = titles[capsuleType] || "时光胶囊";
+            subtitle.textContent = "我们的故事还在继续...";
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // 防止背景滚动
         }
 
         function closeCapsule() {
