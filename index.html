@@ -16,6 +16,227 @@
             background-color: #f5f5f5;
         }
 
+        /* 生日礼花特效容器 */
+        .birthday-fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        /* 烟花发射轨迹 */
+        .firework-trail {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, #ff6b6b, #ff8e8e, transparent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ff6b6b;
+            animation: trailGlow 1.5s ease-out forwards;
+        }
+
+        @keyframes trailGlow {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+                box-shadow: 0 0 20px #ff6b6b;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.8;
+                box-shadow: 0 0 15px #ff8e8e;
+            }
+            100% {
+                transform: scale(0.5);
+                opacity: 0;
+                box-shadow: 0 0 5px #ffa8a8;
+            }
+        }
+
+
+        /* 烟花爆炸粒子 */
+        .firework-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: fireworkExplode 3s ease-out forwards;
+        }
+
+        .firework-particle::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 50%;
+            background: inherit;
+            filter: blur(3px);
+            opacity: 0.6;
+        }
+
+        @keyframes fireworkExplode {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+                filter: brightness(1.5);
+            }
+            20% {
+                transform: scale(1.2) rotate(72deg);
+                opacity: 1;
+                filter: brightness(1.2);
+            }
+            50% {
+                transform: scale(1.8) rotate(180deg);
+                opacity: 0.8;
+                filter: brightness(1);
+            }
+            80% {
+                transform: scale(2.2) rotate(288deg);
+                opacity: 0.4;
+                filter: brightness(0.8);
+            }
+            100% {
+                transform: scale(2.5) rotate(360deg);
+                opacity: 0;
+                filter: brightness(0.5);
+            }
+        }
+
+        /* 酷炫文字特效 */
+        .birthday-text {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10000;
+            opacity: 0;
+            animation: textEntrance 2.5s ease-out forwards;
+        }
+
+        .birthday-text h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            margin: 0;
+            background: linear-gradient(45deg, 
+                #ff0080, #ff4080, #ff6b6b, #ff8e8e, 
+                #ffa8a8, #ffb3b3, #ffc0c0, #ffd1d1,
+                #ff6b6b, #ff4080, #ff0080);
+            background-size: 600% 600%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 1.5s ease-in-out infinite, textGlow 2s ease-in-out infinite alternate;
+            letter-spacing: 3px;
+            text-shadow: 
+                0 0 10px rgba(255, 0, 128, 0.8),
+                0 0 20px rgba(255, 64, 128, 0.6),
+                0 0 30px rgba(255, 107, 107, 0.4),
+                0 0 40px rgba(255, 142, 142, 0.2);
+            filter: drop-shadow(0 0 20px rgba(255, 0, 128, 0.5));
+        }
+
+        .birthday-text p {
+            font-size: 1.8rem;
+            margin: 25px 0 0 0;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffa8a8);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            opacity: 0;
+            animation: textFadeIn 1.2s ease-out 0.8s forwards, gradientShift 2s ease-in-out infinite;
+            text-shadow: 0 0 15px rgba(255, 107, 107, 0.4);
+            letter-spacing: 1px;
+        }
+
+        @keyframes textEntrance {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+                filter: blur(8px);
+            }
+            30% {
+                opacity: 0.7;
+                transform: translate(-50%, -50%) scale(1.05);
+                filter: blur(3px);
+            }
+            60% {
+                opacity: 0.9;
+                transform: translate(-50%, -50%) scale(0.98);
+                filter: blur(1px);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+                filter: blur(0px);
+            }
+        }
+
+        @keyframes gradientShift {
+            0% { 
+                background-position: 0% 50%;
+            }
+            25% { 
+                background-position: 25% 75%;
+            }
+            50% { 
+                background-position: 100% 50%;
+            }
+            75% { 
+                background-position: 75% 25%;
+            }
+            100% { 
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes textGlow {
+            0% {
+                filter: drop-shadow(0 0 20px rgba(255, 0, 128, 0.5)) brightness(1);
+            }
+            100% {
+                filter: drop-shadow(0 0 30px rgba(255, 64, 128, 0.8)) brightness(1.2);
+            }
+        }
+
+        @keyframes textFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(15px) scale(0.95);
+                filter: blur(4px);
+            }
+            50% {
+                opacity: 0.6;
+                transform: translateY(5px) scale(1.01);
+                filter: blur(2px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0px);
+            }
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 767px) {
+            .birthday-text h1 {
+                font-size: 3rem;
+                letter-spacing: 2px;
+            }
+            
+            .birthday-text p {
+                font-size: 1.3rem;
+            }
+        }
+
         /* 爱心飘落动画容器 */
         .floating-hearts-container {
             position: fixed;
@@ -31,20 +252,34 @@
         /* 飘落的爱心样式 */
         .falling-heart {
             position: absolute;
-            color: #ff6b6b;
+            color: #ff6b6b !important;
             opacity: 0;
             text-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
             animation: falling linear forwards;
+            -webkit-text-fill-color: #ff6b6b !important;
+            -webkit-text-stroke: 0.5px #ff6b6b;
         }
 
         /* 飘落动画 */
         @keyframes falling {
             0% {
-                transform: translateY(-10px) rotate(0deg);
+                transform: translateY(-10px) translateX(0px) rotate(0deg);
                 opacity: 0.7;
             }
+            25% {
+                transform: translateY(25vh) translateX(var(--sway, 0px)) rotate(90deg);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(50vh) translateX(calc(var(--sway, 0px) * -0.5)) rotate(180deg);
+                opacity: 0.7;
+            }
+            75% {
+                transform: translateY(75vh) translateX(calc(var(--sway, 0px) * 0.3)) rotate(270deg);
+                opacity: 0.5;
+            }
             100% {
-                transform: translateY(100vh) rotate(360deg);
+                transform: translateY(100vh) translateX(0px) rotate(360deg);
                 opacity: 0;
             }
         }
@@ -144,11 +379,11 @@
             text-align: center;
         }
 
-        .baiyi-love {
+        .heptcro-love {
             text-align: center !important;
         }
 
-        .baiyi-text {
+        .heptcro-text {
             font-size: 25px;
             color: #282727;
         }
@@ -279,11 +514,23 @@
             line-height: 1.8;
             margin-bottom: 20px;
             font-style: italic;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
         }
         
         .quote-author {
             color: #777;
             font-size: 16px;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .love-quote.fade-out {
+            opacity: 0;
+        }
+        
+        .quote-author.fade-out {
+            opacity: 0;
         }
         
         .timeline-preview {
@@ -450,10 +697,12 @@
         /* 爱心动画样式 */
         .floating-heart {
             position: absolute;
-            color: #ff6b6b;
+            color: #ff6b6b !important;
             font-size: 24px;
             opacity: 0;
             animation: floatUp 1.5s ease-out forwards;
+            -webkit-text-fill-color: #ff6b6b !important;
+            -webkit-text-stroke: 0.5px #ff6b6b;
         }
 
         @keyframes floatUp {
@@ -548,11 +797,25 @@
             .left_info svg { width: 20px; height: 20px; }
             .day_title { font-size: 0.8rem; }
             .time_m { font-size: 0.7rem; }
-            .baiyi-text { font-size: 20px; }
+            .heptcro-text { font-size: 20px; }
             #time-display n { font-size: 24px; }
             
             .memories-title { font-size: 24px; }
             .love-quote { font-size: 16px; }
+            
+            /* 移动端爱心颜色强制设置 */
+            .falling-heart {
+                color: #ff0000 !important;
+                -webkit-text-fill-color: #ff0000 !important;
+                -webkit-text-stroke: 0.5px #ff0000;
+                text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+            }
+            
+            .floating-heart {
+                color: #ff0000 !important;
+                -webkit-text-fill-color: #ff0000 !important;
+                -webkit-text-stroke: 0.5px #ff0000;
+            }
         }
 
         @media (max-width: 360px) {
@@ -564,6 +827,9 @@
 </head>
 
 <body>
+    <!-- 生日礼花特效容器 -->
+    <div class="birthday-fireworks" id="birthdayFireworks"></div>
+
     <!-- 爱心飘落动画容器 -->
     <div class="floating-hearts-container" id="floatingHeartsContainer"></div>
 
@@ -599,8 +865,8 @@
         </div>
     </div>
 
-    <div class="baiyi-love" style="margin-top: 10px;">
-        <div class="baiyi-text">这是我们一起走过的</div>
+    <div class="heptcro-love" style="margin-top: 10px;">
+        <div class="heptcro-text">这是我们一起走过的</div>
         <div id="time-display"></div>
     </div>
 
@@ -754,40 +1020,51 @@
             const hearts = ['❤️', '💖', '💘', '💓', '💗', '💕'];
             heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
             
-            // 随机大小 (12px 到 24px)
-            const size = Math.random() * 12 + 12;
+            // 强制设置红色（针对移动端兼容性）
+            heart.style.color = '#ff6b6b';
+            heart.style.webkitTextFillColor = '#ff6b6b';
+            heart.style.webkitTextStroke = '0.5px #ff6b6b';
+            
+            // 统一大小，稍微随机化但范围更小 (16px 到 20px)
+            const size = Math.random() * 4 + 16;
             heart.style.fontSize = `${size}px`;
             
-            // 随机水平位置
-            const left = Math.random() * 100;
+            // 随机水平位置，但避免边缘
+            const left = Math.random() * 80 + 10; // 10% 到 90% 之间
             heart.style.left = `${left}%`;
             
-            // 随机动画持续时间 (5s 到 15s)
-            const duration = Math.random() * 10 + 5;
+            // 统一动画持续时间，稍微随机化 (8s 到 12s)
+            const duration = Math.random() * 4 + 8;
             heart.style.animationDuration = `${duration}s`;
             
-            // 随机透明度 (0.3 到 0.8)
-            const opacity = Math.random() * 0.5 + 0.3;
+            // 统一透明度，稍微随机化 (0.6 到 0.8)
+            const opacity = Math.random() * 0.2 + 0.6;
             heart.style.opacity = opacity;
+            
+            // 添加轻微的左右摆动效果
+            const sway = (Math.random() - 0.5) * 20; // -10px 到 10px
+            heart.style.setProperty('--sway', `${sway}px`);
             
             // 添加到容器
             container.appendChild(heart);
             
             // 动画结束后移除元素
             setTimeout(() => {
-                heart.remove();
+                if (heart.parentNode) {
+                    heart.remove();
+                }
             }, duration * 1000);
         }
         
         // 定时创建爱心
         function startFallingHearts() {
-            // 初始创建几个爱心
-            for (let i = 0; i < 5; i++) {
-                setTimeout(createFallingHeart, i * 1000);
+            // 初始创建几个爱心，间隔更均匀
+            for (let i = 0; i < 3; i++) {
+                setTimeout(createFallingHeart, i * 1500);
             }
             
-            // 之后每隔一段时间创建一个新爱心
-            setInterval(createFallingHeart, 2000);
+            // 之后每隔一段时间创建一个新爱心，频率更合理
+            setInterval(createFallingHeart, 3000);
         }
 
         // 多年农历转换数据库（2024-2036年）
@@ -877,13 +1154,29 @@
                 
                 // 计算倒计时
                 const [year, month, day] = solarDateStr.split('-').map(Number);
-                let thisYearBirthday = new Date(year, month - 1, day);
                 
-                // 如果今年的生日已经过了，查找下一年的生日
-                if (thisYearBirthday < currentDate) {
-                    // 查找下一年的农历对应日期
+                // 获取当前日期的年月日（忽略时间）
+                const today = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+                const birthdayThisYear = new Date(currentDate.getFullYear(), month - 1, day);
+                
+                // 调试信息
+                console.log(`生日调试 - ${countdownElementId}:`, {
+                    currentDate: today.toISOString().split('T')[0],
+                    birthdayThisYear: birthdayThisYear.toISOString().split('T')[0],
+                    solarDateStr: solarDateStr
+                });
+                
+                // 判断是否是生日当天
+                const isBirthdayToday = today.getTime() === birthdayThisYear.getTime();
+                
+                if (isBirthdayToday) {
+                    // 生日当天显示生日快乐
+                    document.getElementById(countdownElementId).textContent = '生日快乐！🎉';
+                    console.log(`显示生日快乐: ${countdownElementId}`);
+                } else if (birthdayThisYear < today) {
+                    // 生日已过，计算下一年的生日
                     let nextYearBirthday = null;
-                    for (let nextYear = year + 1; nextYear <= year + 3; nextYear++) {
+                    for (let nextYear = currentYear + 1; nextYear <= currentYear + 3; nextYear++) {
                         if (lunarToSolarDatabase[nextYear] && lunarToSolarDatabase[nextYear][key]) {
                             const nextSolarDate = lunarToSolarDatabase[nextYear][key];
                             const [nextYearNum, nextMonth, nextDay] = nextSolarDate.split('-').map(Number);
@@ -893,22 +1186,24 @@
                     }
                     
                     if (nextYearBirthday) {
-                        thisYearBirthday = nextYearBirthday;
+                        const timeDiff = nextYearBirthday - today;
+                        const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+                        document.getElementById(countdownElementId).textContent = `还有 ${daysDiff} 天`;
+                        console.log(`下一年的生日倒计时: ${daysDiff} 天, 下一年的生日: ${nextYearBirthday.toISOString().split('T')[0]}`);
                     } else {
                         // 如果没有找到下一年的数据，使用估算
-                        thisYearBirthday = new Date(year + 1, month - 1, day);
+                        const nextYearBirthday = new Date(currentYear + 1, month - 1, day);
+                        const timeDiff = nextYearBirthday - today;
+                        const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+                        document.getElementById(countdownElementId).textContent = `还有 ${daysDiff} 天`;
+                        console.log(`下一年的生日倒计时(估算): ${daysDiff} 天, 下一年的生日: ${nextYearBirthday.toISOString().split('T')[0]}`);
                     }
-                }
-                
-                const timeDiff = thisYearBirthday - currentDate;
-                const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-                
-                if (daysDiff === 0) {
-                    document.getElementById(countdownElementId).textContent = '生日快乐！🎉';
-                } else if (daysDiff < 0) {
-                    document.getElementById(countdownElementId).textContent = `已过 ${Math.abs(daysDiff)} 天`;
                 } else {
+                    // 生日还没到，计算今年的倒计时
+                    const timeDiff = birthdayThisYear - today;
+                    const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
                     document.getElementById(countdownElementId).textContent = `还有 ${daysDiff} 天`;
+                    console.log(`今年的生日倒计时: ${daysDiff} 天`);
                 }
             } else {
                 // 如果数据库中没有数据，使用简化的转换
@@ -926,19 +1221,27 @@
                 const solarDateStr = `${currentYear}-${String(solarMonth).padStart(2, '0')}-${String(solarDay).padStart(2, '0')}`;
                 document.getElementById(elementId).textContent = solarDateStr;
                 
-                let thisYearBirthday = new Date(currentYear, solarMonth - 1, solarDay);
-                if (thisYearBirthday < currentDate) {
-                    thisYearBirthday = new Date(currentYear + 1, solarMonth - 1, solarDay);
-                }
+                // 获取当前日期的年月日（忽略时间）
+                const today = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+                const birthdayThisYear = new Date(currentYear, solarMonth - 1, solarDay);
                 
-                const timeDiff = thisYearBirthday - currentDate;
-                const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+                // 判断是否是生日当天
+                const isBirthdayToday = today.getTime() === birthdayThisYear.getTime();
                 
-                if (daysDiff === 0) {
+                if (isBirthdayToday) {
+                    // 生日当天显示生日快乐
                     document.getElementById(countdownElementId).textContent = '生日快乐！🎉';
-                } else if (daysDiff < 0) {
-                    document.getElementById(countdownElementId).textContent = `已过 ${Math.abs(daysDiff)} 天`;
+                    console.log(`显示生日快乐(简化): ${countdownElementId}`);
+                } else if (birthdayThisYear < today) {
+                    // 生日已过，计算下一年的生日
+                    const nextYearBirthday = new Date(currentYear + 1, solarMonth - 1, solarDay);
+                    const timeDiff = nextYearBirthday - today;
+                    const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+                    document.getElementById(countdownElementId).textContent = `还有 ${daysDiff} 天`;
                 } else {
+                    // 生日还没到，计算今年的倒计时
+                    const timeDiff = birthdayThisYear - today;
+                    const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
                     document.getElementById(countdownElementId).textContent = `还有 ${daysDiff} 天`;
                 }
             }
@@ -960,6 +1263,11 @@
             // 随机选择不同的爱心表情
             const hearts = ['❤️', '💖', '💘', '💓', '💗', '💕'];
             heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            
+            // 强制设置红色（针对移动端兼容性）
+            heart.style.color = '#ff6b6b';
+            heart.style.webkitTextFillColor = '#ff6b6b';
+            heart.style.webkitTextStroke = '0.5px #ff6b6b';
             
             // 设置初始位置
             heart.style.left = `${x}px`;
@@ -1009,6 +1317,164 @@
             }
         }
 
+        // 生日烟花特效
+        function createFireworks() {
+            const container = document.getElementById('birthdayFireworks');
+            if (!container) return;
+
+            // 创建多个烟花爆炸
+            const fireworkCount = 6;
+            for (let i = 0; i < fireworkCount; i++) {
+                setTimeout(() => {
+                    createFireworkExplosion(container);
+                }, i * 800);
+            }
+        }
+
+        function createFireworkExplosion(container) {
+            const colors = [
+                '#ff0080', '#ff4080', '#ff6b6b', '#ff8e8e', 
+                '#ffa8a8', '#ffb3b3', '#ffc0c0', '#ffd1d1',
+                '#ff4080', '#ff6b6b', '#ff8e8e'
+            ];
+            
+            // 随机爆炸位置（上半部分）
+            const centerX = Math.random() * window.innerWidth;
+            const centerY = Math.random() * window.innerHeight * 0.7 + 100;
+            
+            // 创建轨迹（从底部发射）
+            const startX = centerX + (Math.random() - 0.5) * 200;
+            const startY = window.innerHeight - 50;
+            createTrail(container, startX, startY, centerX, centerY);
+            
+            // 延迟创建爆炸效果
+            setTimeout(() => {
+                createExplosion(container, centerX, centerY, colors);
+            }, 1000);
+        }
+
+        function createTrail(container, startX, startY, targetX, targetY) {
+            const trail = document.createElement('div');
+            trail.classList.add('firework-trail');
+            trail.style.left = startX + 'px';
+            trail.style.top = startY + 'px';
+            
+            container.appendChild(trail);
+            
+            // 轨迹动画
+            const distance = Math.sqrt(Math.pow(targetX - startX, 2) + Math.pow(targetY - startY, 2));
+            const duration = Math.min(distance / 4, 1200);
+            
+            trail.style.transition = `all ${duration}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
+            trail.style.transform = `translate(${targetX - startX}px, ${targetY - startY}px)`;
+            
+            setTimeout(() => {
+                if (trail.parentNode) {
+                    trail.remove();
+                }
+            }, duration);
+        }
+
+        function createExplosion(container, centerX, centerY, colors) {
+            // 创建多个爆炸层，形成更丰富的烟花效果
+            for (let layer = 0; layer < 4; layer++) {
+                setTimeout(() => {
+                    const particleCount = 25 + layer * 15;
+                    const radius = 60 + layer * 50;
+                    const layerColors = colors.slice(layer * 2, (layer + 1) * 3);
+                    
+                    for (let i = 0; i < particleCount; i++) {
+                        const particle = document.createElement('div');
+                        particle.classList.add('firework-particle');
+                        
+                        // 随机颜色
+                        particle.style.backgroundColor = layerColors[Math.floor(Math.random() * layerColors.length)];
+                        
+                        // 从中心向外扩散，添加随机性
+                        const angle = (Math.PI * 2 * i) / particleCount + (Math.random() - 0.5) * 0.8;
+                        const distance = Math.random() * radius + 20;
+                        const x = centerX + Math.cos(angle) * distance;
+                        const y = centerY + Math.sin(angle) * distance;
+                        
+                        particle.style.left = x + 'px';
+                        particle.style.top = y + 'px';
+                        
+                        // 随机动画延迟和持续时间
+                        particle.style.animationDelay = Math.random() * 0.5 + 's';
+                        particle.style.animationDuration = (2.5 + Math.random() * 1) + 's';
+                        
+                        container.appendChild(particle);
+                        
+                        // 动画结束后移除
+                        setTimeout(() => {
+                            if (particle.parentNode) {
+                                particle.remove();
+                            }
+                        }, 3500);
+                    }
+                }, layer * 150);
+            }
+        }
+
+        // 显示酷炫生日文字
+        function showBirthdayText(name) {
+            const textContainer = document.createElement('div');
+            textContainer.classList.add('birthday-text');
+            
+            // 随机选择祝福语
+            const birthdayMessages = [
+                '又到了地球绕着太阳公转一周的日子，愿烦恼都被吹蜡烛的风带走。',
+                '岁月把智慧存入专属账户，今天自动到账新一期的＂成熟利息＂。',
+                '日历偷偷戴上派对帽，奶油香气里藏着时光的甜蜜密码。',
+                '时间悄悄在蛋糕上插了一根蜡烛，庆祝你又解锁了新一岁的成就。',
+                '宇宙为你准备了一场专属的生日派对，星星都在为你闪烁。',
+                '今天是个特殊的日子，连空气都弥漫着祝福的香甜味道。',
+                '岁月如诗，今天是最美的一页，愿快乐永远为你停留。',
+                '生日是时光送给你的礼物，愿每一份美好都如期而至。',
+                '今天地球为你转得特别慢，让快乐有更多时间停留。',
+                '岁月把温柔装进礼物盒，今天准时送达你的手中。',
+                '生日是生命中最闪亮的日子，愿你的光芒永远璀璨。',
+                '时光悄悄为你准备了一场惊喜，愿幸福永远与你同行。'
+            ];
+            
+            const randomMessage = birthdayMessages[Math.floor(Math.random() * birthdayMessages.length)];
+            
+            textContainer.innerHTML = `
+                <h1>${name}生日快乐！</h1>
+                <p>${randomMessage}</p>
+            `;
+            
+            document.body.appendChild(textContainer);
+            
+            // 5秒后移除文字
+            setTimeout(() => {
+                if (textContainer.parentNode) {
+                    textContainer.remove();
+                }
+            }, 5000);
+        }
+
+        // 检查生日并显示特效
+        function checkBirthdayAndShowEffect() {
+            const tc = document.getElementById('tongchao-countdown');
+            const wh = document.getElementById('wenhui-countdown');
+            
+            if (tc && wh) {
+                const tcText = tc.textContent;
+                const whText = wh.textContent;
+                
+                if (tcText.includes('生日快乐')) {
+                    // 彤超过生日
+                    createFireworks();
+                    showBirthdayText('彤超');
+                } else if (whText.includes('生日快乐')) {
+                    // 文慧过生日
+                    createFireworks();
+                    showBirthdayText('文慧');
+                }
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             // 启动爱心飘落动画
             startFallingHearts();
@@ -1022,14 +1488,17 @@
             // 个性化当天生日祝福
             setTimeout(function () {
                 const tc = document.getElementById('tongchao-countdown');
-                if (tc && tc.textContent.includes('生日快乐')) {
+                if (tc && tc.textContent.includes('生日快乐！🎉')) {
                     tc.textContent = '彤超生日快乐！🎉';
                 }
                 const wh = document.getElementById('wenhui-countdown');
-                if (wh && wh.textContent.includes('生日快乐')) {
+                if (wh && wh.textContent.includes('生日快乐！🎉')) {
                     wh.textContent = '文慧生日快乐！🎉';
                 }
-            }, 0);
+                
+                // 检查生日并显示特效
+                checkBirthdayAndShowEffect();
+            }, 100);
 
             // 时光胶囊点击事件
             const timelineItems = document.querySelectorAll('.timeline-item');
@@ -1154,48 +1623,61 @@
         document.addEventListener('DOMContentLoaded', function () {
             var quotes = [
                 '我愿与你，走过春夏秋冬的每一道风景。',
-                '想把世间温柔都给你，把所有日子都变甜。',
-                '你的名字，是我写在心上的一封情书。',
                 '余生很长，幸好有你，同看暮色与朝阳。',
-                '把星河揣进口袋，把你放在心尖上。',
-                '山海有归期，风雨有相逢，而你有我。',
+                '把星河揣进口袋，只想在某个黄昏与你共赏。',
+                '山海有归期，风雨有相逢。',
                 '想把每一次心动，都认真记录成永远。',
-                '岁月缓缓，我在你左右，与你共温一壶人间烟火。',
-                '愿陪你看遍人间万千，仍觉你最好看。',
-                '你是我的答案，所以我从不犹豫。',
+                '岁月缓缓，若能与你共温一壶人间烟火，便是晴天。',
+                '愿陪你看遍人间万千风景，每一程都有光。',
+                '有些人出现，就是答案的形状。',
                 '我会把所有温柔留给你，把所有好运也分给你。',
-                '把日落和晚风都给你，把拥抱和偏爱也给你。',
-                '我跨过山海，只为在黄昏与你并肩。',
-                '愿将余生所有热爱，按份额分给你和明天。',
-                '你是四季，也是人间，还是我唯一的心愿。',
-                '想把不动声色都藏好，只在你面前温柔失守。',
+                '想把每一个日落和晚风，都讲给你听。',
+                '愿将今后的热爱，分一半给生活，一半与你分享。',
+                '你是四季流转，是人间清欢，也是我悄悄期待的可能。',
                 '若世界喧哗，我做你的树与风。',
-                '世事繁杂，你是我心中最简洁的答案。',
-                '所有的路，最后都想通向你。',
                 '你一笑，人间就多点晴朗。',
-                '我愿做你的避风港，也做你的星辰大海。',
-                '喜欢有迹可循，爱你无须证明。',
                 '我把每一分思念都认真存档，等与你一一兑现。',
                 '从今以后，风日清和，皆为你来。'
             ];
             var authors = [
                 '—— 我们的约定',
-                '—— 我们的小幸福',
-                '—— 致最爱的你',
                 '—— 心之所向',
                 '—— 只为你写',
-                '—— 共白首',
                 '—— 朝朝暮暮',
                 '—— 人间烟火里',
                 '—— 见字如面',
                 '—— 与你同行'
             ];
+            
             function pickRandom(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+            
             var quoteEl = document.getElementById('love-quote');
             var authorEl = document.getElementById('quote-author');
+            
             if (quoteEl && authorEl) {
+                // 初始显示
                 quoteEl.textContent = '"' + pickRandom(quotes) + '"';
                 authorEl.textContent = pickRandom(authors);
+                
+                // 动态切换函数
+                function switchQuote() {
+                    // 添加淡出效果
+                    quoteEl.classList.add('fade-out');
+                    authorEl.classList.add('fade-out');
+                    
+                    // 等待淡出动画完成后切换内容
+                    setTimeout(function() {
+                        quoteEl.textContent = '"' + pickRandom(quotes) + '"';
+                        authorEl.textContent = pickRandom(authors);
+                        
+                        // 移除淡出效果，触发淡入
+                        quoteEl.classList.remove('fade-out');
+                        authorEl.classList.remove('fade-out');
+                    }, 1000); // 等待1秒（与CSS过渡时间一致）
+                }
+                
+                // 每8秒切换一次
+                setInterval(switchQuote, 8000);
             }
         });
 
