@@ -145,11 +145,10 @@
         .birthday-greeting {
             font-size: 0.8em;
             display: inline-block;
-            margin-left: -0.3em;
         }
         
-        .birthday-text h1 {
-            text-align: left;
+        .name-text {
+            margin-left: -0.5em;
         }
 
         .birthday-text p {
@@ -244,7 +243,6 @@
             
             .birthday-greeting {
                 font-size: 0.75em;
-                margin-left: -0.4em;
             }
             
             .birthday-text p {
@@ -1459,7 +1457,7 @@
             const randomMessage = birthdayMessages[Math.floor(Math.random() * birthdayMessages.length)];
             
             textContainer.innerHTML = `
-                <h1>${name}<br><span class="birthday-greeting">生日快乐！</span></h1>
+                <h1><span class="name-text">${name}</span><br><span class="birthday-greeting">生日快乐！</span></h1>
                 <p>${randomMessage}</p>
             `;
             
@@ -1703,6 +1701,5 @@
     </script>
 </body>
 </html>
-
 
 
