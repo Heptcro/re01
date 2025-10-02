@@ -770,6 +770,157 @@
             }
         }
 
+        /* 相册轮播图样式 */
+        .photo-carousel {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .carousel-slides {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .carousel-slide:hover img {
+            transform: scale(1.02);
+        }
+
+        .carousel-slide.placeholder {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 20px;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        /* 轮播图导航按钮 */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(15px);
+            z-index: 10;
+            opacity: 0.8;
+        }
+
+        .carousel-nav:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-50%) scale(1.15);
+            opacity: 1;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-nav.prev {
+            left: 20px;
+        }
+
+        .carousel-nav.next {
+            right: 20px;
+        }
+
+        /* 轮播图指示器 */
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px 16px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            position: relative;
+        }
+
+        .carousel-indicator.active {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.3);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+        }
+
+        .carousel-indicator:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* 图片描述 */
+        .photo-description {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 40px 20px 20px;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .carousel-slide:hover .photo-description {
+            opacity: 1;
+        }
+
         /* 响应式设计 */
         @media (max-width: 768px) {
             .capsule-content {
@@ -794,6 +945,29 @@
                 width: 50px;
                 height: 50px;
                 font-size: 20px;
+            }
+
+            .carousel-container {
+                height: 250px;
+            }
+
+            .carousel-nav {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+
+            .carousel-nav.prev {
+                left: 10px;
+            }
+
+            .carousel-nav.next {
+                right: 10px;
+            }
+
+            .photo-description {
+                font-size: 12px;
+                padding: 30px 15px 15px;
             }
         }
         
@@ -1030,12 +1204,35 @@
         <div class="capsule-content">
             <div class="capsule-header">
                 <h2 class="capsule-title" id="capsuleTitle">时光胶囊</h2>
-                <p class="capsule-subtitle" id="capsuleSubtitle">珍贵的回忆</p>
+              
                 <button class="capsule-close" onclick="closeCapsule()">&times;</button>
             </div>
             <div class="capsule-body" id="capsuleBody">
-                <!-- 动态内容将在这里显示 -->
-                故事待续……
+                <!-- 相册轮播图 -->
+                <div class="photo-carousel" id="photoCarousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slides" id="carouselSlides">
+                            <!-- 轮播图片将通过JavaScript动态添加 -->
+                            <div class="carousel-slide placeholder">
+                                <div>📸 美好回忆正在加载中...</div>
+                            </div>
+                        </div>
+                        
+                        <!-- 导航按钮 -->
+                        <button class="carousel-nav prev" id="prevBtn" onclick="previousSlide()">‹</button>
+                        <button class="carousel-nav next" id="nextBtn" onclick="nextSlide()">›</button>
+                        
+                        <!-- 指示器 -->
+                        <div class="carousel-indicators" id="carouselIndicators">
+                            <!-- 指示器将通过JavaScript动态添加 -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 动态文字内容 -->
+                <div id="capsuleText">
+                    故事待续……
+                </div>
             </div>
             
             <!-- 爱心按钮 -->
@@ -1233,9 +1430,6 @@
             }
             
             if (solarDateStr) {
-                // 使用数据库中的准确数据
-                document.getElementById(elementId).textContent = solarDateStr;
-                
                 // 计算倒计时
                 const [year, month, day] = solarDateStr.split('-').map(Number);
                 
@@ -1255,36 +1449,43 @@
                 
                 // 检查是否是生日当天
                 if (isBirthdayToday) {
-                    // 生日当天显示生日快乐
+                    // 生日当天显示当年生日日期和生日快乐
+                    document.getElementById(elementId).textContent = solarDateStr;
                     document.getElementById(countdownElementId).textContent = '生日快乐！🎉';
                     console.log(`显示生日快乐: ${countdownElementId}`);
-                } else if (birthdayThisYear < today) {
+                } else if (birthdayThisYear <= today) {
                     // 生日已过，计算下一年的生日
                     let nextYearBirthday = null;
+                    let nextSolarDate = null;
                     for (let nextYear = currentYear + 1; nextYear <= currentYear + 3; nextYear++) {
                         if (lunarToSolarDatabase[nextYear] && lunarToSolarDatabase[nextYear][key]) {
-                            const nextSolarDate = lunarToSolarDatabase[nextYear][key];
+                            nextSolarDate = lunarToSolarDatabase[nextYear][key];
                             const [nextYearNum, nextMonth, nextDay] = nextSolarDate.split('-').map(Number);
                             nextYearBirthday = new Date(nextYearNum, nextMonth - 1, nextDay);
                             break;
                         }
                     }
                     
-                    if (nextYearBirthday) {
+                    if (nextYearBirthday && nextSolarDate) {
+                        // 显示下一年的生日日期
+                        document.getElementById(elementId).textContent = nextSolarDate;
                         const timeDiff = nextYearBirthday - today;
                         const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
                         document.getElementById(countdownElementId).textContent = `还有 ${daysDiff} 天`;
-                        console.log(`下一年的生日倒计时: ${daysDiff} 天, 下一年的生日: ${nextYearBirthday.toISOString().split('T')[0]}`);
+                        console.log(`下一年的生日倒计时: ${daysDiff} 天, 下一年的生日: ${nextYearBirthday.toISOString().split('T')[0]}, 显示日期: ${nextSolarDate}`);
                     } else {
                         // 如果没有找到下一年的数据，使用估算
                         const nextYearBirthday = new Date(currentYear + 1, month - 1, day);
+                        const nextSolarDateStr = `${currentYear + 1}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                        document.getElementById(elementId).textContent = nextSolarDateStr;
                         const timeDiff = nextYearBirthday - today;
                         const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
                         document.getElementById(countdownElementId).textContent = `还有 ${daysDiff} 天`;
-                        console.log(`下一年的生日倒计时(估算): ${daysDiff} 天, 下一年的生日: ${nextYearBirthday.toISOString().split('T')[0]}`);
+                        console.log(`下一年的生日倒计时(估算): ${daysDiff} 天, 下一年的生日: ${nextYearBirthday.toISOString().split('T')[0]}, 显示日期: ${nextSolarDateStr}`);
                     }
                 } else {
-                    // 生日还没到，计算今年的倒计时
+                    // 生日还没到，显示今年的生日日期和倒计时
+                    document.getElementById(elementId).textContent = solarDateStr;
                     const timeDiff = birthdayThisYear - today;
                     const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
                     document.getElementById(countdownElementId).textContent = `还有 ${daysDiff} 天`;
@@ -1304,7 +1505,6 @@
                 }
                 
                 const solarDateStr = `${currentYear}-${String(solarMonth).padStart(2, '0')}-${String(solarDay).padStart(2, '0')}`;
-                document.getElementById(elementId).textContent = solarDateStr;
                 
                 // 获取当前日期的年月日（忽略时间）
                 const today = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
@@ -1314,17 +1514,21 @@
                 const isBirthdayToday = today.getTime() === birthdayThisYear.getTime();
                 
                 if (isBirthdayToday) {
-                    // 生日当天显示生日快乐
+                    // 生日当天显示当年生日日期和生日快乐
+                    document.getElementById(elementId).textContent = solarDateStr;
                     document.getElementById(countdownElementId).textContent = '生日快乐！🎉';
                     console.log(`显示生日快乐(简化): ${countdownElementId}`);
-                } else if (birthdayThisYear < today) {
-                    // 生日已过，计算下一年的生日
+                } else if (birthdayThisYear <= today) {
+                    // 生日已过，显示下一年的生日日期和倒计时
                     const nextYearBirthday = new Date(currentYear + 1, solarMonth - 1, solarDay);
+                    const nextSolarDateStr = `${currentYear + 1}-${String(solarMonth).padStart(2, '0')}-${String(solarDay).padStart(2, '0')}`;
+                    document.getElementById(elementId).textContent = nextSolarDateStr;
                     const timeDiff = nextYearBirthday - today;
                     const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
                     document.getElementById(countdownElementId).textContent = `还有 ${daysDiff} 天`;
                 } else {
-                    // 生日还没到，计算今年的倒计时
+                    // 生日还没到，显示今年的生日日期和倒计时
+                    document.getElementById(elementId).textContent = solarDateStr;
                     const timeDiff = birthdayThisYear - today;
                     const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
                     document.getElementById(countdownElementId).textContent = `还有 ${daysDiff} 天`;
@@ -1380,11 +1584,141 @@
             }, 1500);
         }
 
+        // 轮播图相关变量
+        let currentSlideIndex = 0;
+        let totalSlides = 0;
+        let slideInterval = null;
+
+        // 相册数据库 - 为不同的胶囊类型配置不同的照片
+        const photoDatabase = {
+            confession: [
+                
+            ],
+            date: [
+    
+            ],
+            birthday: [
+                'birth10.01.jpg'
+            ],
+            travel: [
+              
+            ],
+            future: [
+              
+            ]
+        };
+
+        // 轮播图功能函数
+        function initializeCarousel(photos) {
+            const slidesContainer = document.getElementById('carouselSlides');
+            const indicatorsContainer = document.getElementById('carouselIndicators');
+            
+            if (!photos || photos.length === 0) {
+                // 如果没有照片，显示占位符
+                slidesContainer.innerHTML = `
+                    <div class="carousel-slide placeholder">
+                        <div>📸 故事待续</div>
+                    </div>
+                `;
+                indicatorsContainer.innerHTML = '';
+                document.getElementById('prevBtn').style.display = 'none';
+                document.getElementById('nextBtn').style.display = 'none';
+                return;
+            }
+
+            totalSlides = photos.length;
+            currentSlideIndex = 0;
+            
+            // 创建轮播图片
+            slidesContainer.innerHTML = photos.map((photoSrc, index) => `
+                <div class="carousel-slide" data-index="${index}">
+                    <img src="${photoSrc}" alt="" loading="lazy">
+                </div>
+            `).join('');
+            
+            // 创建指示器
+            indicatorsContainer.innerHTML = photos.map((_, index) => `
+                <button class="carousel-indicator ${index === 0 ? 'active' : ''}" 
+                        onclick="goToSlide(${index})" 
+                        data-index="${index}">
+                </button>
+            `).join('');
+            
+            // 显示导航按钮
+            document.getElementById('prevBtn').style.display = totalSlides > 1 ? 'flex' : 'none';
+            document.getElementById('nextBtn').style.display = totalSlides > 1 ? 'flex' : 'none';
+            
+            // 开始自动播放
+            if (totalSlides > 1) {
+                startAutoPlay();
+            }
+        }
+
+        function updateSlidePosition() {
+            const slidesContainer = document.getElementById('carouselSlides');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            
+            if (slidesContainer) {
+                slidesContainer.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+            }
+            
+            // 更新指示器
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlideIndex);
+            });
+        }
+
+        function nextSlide() {
+            if (totalSlides > 1) {
+                currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+                updateSlidePosition();
+                resetAutoPlay();
+            }
+        }
+
+        function previousSlide() {
+            if (totalSlides > 1) {
+                currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+                updateSlidePosition();
+                resetAutoPlay();
+            }
+        }
+
+        function goToSlide(index) {
+            if (index >= 0 && index < totalSlides) {
+                currentSlideIndex = index;
+                updateSlidePosition();
+                resetAutoPlay();
+            }
+        }
+
+        function startAutoPlay() {
+            if (slideInterval) {
+                clearInterval(slideInterval);
+            }
+            slideInterval = setInterval(() => {
+                nextSlide();
+            }, 4000); // 每4秒切换一张
+        }
+
+        function stopAutoPlay() {
+            if (slideInterval) {
+                clearInterval(slideInterval);
+                slideInterval = null;
+            }
+        }
+
+        function resetAutoPlay() {
+            stopAutoPlay();
+            startAutoPlay();
+        }
+
         // 时光胶囊相关函数
         function openCapsule(capsuleType) {
             const modal = document.getElementById('capsuleModal');
             const title = document.getElementById('capsuleTitle');
             const subtitle = document.getElementById('capsuleSubtitle');
+            const capsuleText = document.getElementById('capsuleText');
             
             // 根据点击的胶囊类型设置标题
             const titles = {
@@ -1396,7 +1730,13 @@
             };
             
             title.textContent = titles[capsuleType] || "时光胶囊";
-            subtitle.textContent = "我们的故事还在继续...";
+       
+            capsuleText.style.display = 'none'; // 隐藏文字描述
+            
+            // 初始化相册轮播图
+            const photos = photoDatabase[capsuleType] || [];
+            initializeCarousel(photos);
+            
             modal.classList.add('show');
             document.body.style.overflow = 'hidden'; // 防止背景滚动
         }
@@ -1405,6 +1745,7 @@
             const modal = document.getElementById('capsuleModal');
             modal.classList.remove('show');
             document.body.style.overflow = 'auto'; // 恢复滚动
+            stopAutoPlay(); // 停止轮播图自动播放
         }
 
         // 点击背景关闭弹窗
@@ -1673,12 +2014,44 @@
             const modal = document.getElementById('capsuleModal');
             modal.addEventListener('click', handleModalClick);
 
-            // ESC键关闭弹窗
+            // ESC键关闭弹窗，左右键控制轮播图
             document.addEventListener('keydown', function(event) {
                 if (event.key === 'Escape') {
                     closeCapsule();
+                } else if (document.getElementById('capsuleModal').classList.contains('show')) {
+                    if (event.key === 'ArrowLeft') {
+                        previousSlide();
+                    } else if (event.key === 'ArrowRight') {
+                        nextSlide();
+                    }
                 }
             });
+
+            // 添加触摸支持
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            document.getElementById('photoCarousel').addEventListener('touchstart', function(event) {
+                touchStartX = event.changedTouches[0].screenX;
+            });
+            
+            document.getElementById('photoCarousel').addEventListener('touchend', function(event) {
+                touchEndX = event.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        nextSlide(); // 向左滑动，显示下一张
+                    } else {
+                        previousSlide(); // 向右滑动，显示上一张
+                    }
+                }
+            }
         });
 
         // 时间计算逻辑
