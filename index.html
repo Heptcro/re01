@@ -708,6 +708,10 @@
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            touch-action: manipulation; /* 防止双击缩放 */
+            -webkit-touch-callout: none; /* 禁止长按菜单 */
+            -webkit-user-select: none; /* 禁止选择文本 */
+            user-select: none; /* 禁止选择文本 */
         }
 
         .love-button:hover {
@@ -1468,10 +1472,11 @@
         function createFloatingHeart(event) {
             // 阻止事件冒泡
             event.stopPropagation();
+            event.preventDefault(); // 阻止默认行为，防止双击缩放
             
             // 获取点击位置
-            const x = event.clientX;
-            const y = event.clientY;
+            const x = event.clientX || (event.touches && event.touches[0].clientX);
+            const y = event.clientY || (event.touches && event.touches[0].clientY);
             
             // 创建爱心元素
             const heart = document.createElement('div');
