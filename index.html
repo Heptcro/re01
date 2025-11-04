@@ -2115,7 +2115,8 @@
                 '若世界喧哗，我做你的树与风。',
                 '你一笑，人间就多点晴朗。',
                 '我把每一分思念都认真存档，等与你一一兑现。',
-                '从今以后，风日清和，皆为你来。'
+                '从今以后，风日清和，皆为你来。',
+                '我猜你从没打开这个网页，不过是我的一厢情愿'
             ];
             var authors = [
                 '—— 我们的约定',
@@ -2134,8 +2135,10 @@
             
             if (quoteEl && authorEl) {
                 // 初始显示
-                quoteEl.textContent = '"' + pickRandom(quotes) + '"';
-                authorEl.textContent = pickRandom(authors);
+                var initialQuote = pickRandom(quotes);
+                quoteEl.textContent = '"' + initialQuote + '"';
+                // 如果是特定的那句话，不显示署名
+                authorEl.textContent = (initialQuote === '我猜你从没打开这个网页，不过是我的一厢情愿') ? '' : pickRandom(authors);
                 
                 // 动态切换函数
                 function switchQuote() {
@@ -2145,8 +2148,10 @@
                     
                     // 等待淡出动画完成后切换内容
                     setTimeout(function() {
-                        quoteEl.textContent = '"' + pickRandom(quotes) + '"';
-                        authorEl.textContent = pickRandom(authors);
+                        var selectedQuote = pickRandom(quotes);
+                        quoteEl.textContent = '"' + selectedQuote + '"';
+                        // 如果是特定的那句话，不显示署名
+                        authorEl.textContent = (selectedQuote === '我猜你从没打开这个网页，不过是我的一厢情愿') ? '' : pickRandom(authors);
                         
                         // 移除淡出效果，触发淡入
                         quoteEl.classList.remove('fade-out');
