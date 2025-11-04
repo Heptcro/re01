@@ -2134,11 +2134,14 @@
             var authorEl = document.getElementById('quote-author');
             
             if (quoteEl && authorEl) {
-                // 初始显示
-                var initialQuote = pickRandom(quotes);
-                quoteEl.textContent = '"' + initialQuote + '"';
-                // 如果是特定的那句话，不显示署名
-                authorEl.textContent = (initialQuote === '我猜你从没打开这个网页，不过是我的一厢情愿') ? '' : pickRandom(authors);
+                var specialQuote = '我猜你从没打开这个网页，不过是我的一厢情愿';
+                var otherQuotes = quotes.filter(function(q) { return q !== specialQuote; });
+                var quoteCounter = 0; // 计数器：0=特定话, 1=其他1, 2=其他2, 然后循环
+                var currentTimeout = null;
+                
+                // 初始显示特定的那句话
+                quoteEl.textContent = '"' + specialQuote + '"';
+                authorEl.textContent = ''; // 不显示署名
                 
                 // 动态切换函数
                 function switchQuote() {
@@ -2148,19 +2151,37 @@
                     
                     // 等待淡出动画完成后切换内容
                     setTimeout(function() {
-                        var selectedQuote = pickRandom(quotes);
+                        // 移到下一个状态
+                        quoteCounter = (quoteCounter + 1) % 3;
+                        
+                        var selectedQuote;
+                        var nextInterval;
+                        
+                        if (quoteCounter === 0) {
+                            // 显示特定的那句话，停留8秒
+                            selectedQuote = specialQuote;
+                            authorEl.textContent = ''; // 不显示署名
+                            nextInterval = 8000;
+                        } else {
+                            // 显示其他随机语录，停留8秒
+                            selectedQuote = pickRandom(otherQuotes);
+                            authorEl.textContent = pickRandom(authors);
+                            nextInterval = 8000;
+                        }
+                        
                         quoteEl.textContent = '"' + selectedQuote + '"';
-                        // 如果是特定的那句话，不显示署名
-                        authorEl.textContent = (selectedQuote === '我猜你从没打开这个网页，不过是我的一厢情愿') ? '' : pickRandom(authors);
                         
                         // 移除淡出效果，触发淡入
                         quoteEl.classList.remove('fade-out');
                         authorEl.classList.remove('fade-out');
+                        
+                        // 设置下一次切换的定时器
+                        currentTimeout = setTimeout(switchQuote, nextInterval);
                     }, 1000); // 等待1秒（与CSS过渡时间一致）
                 }
                 
-                // 每8秒切换一次
-                setInterval(switchQuote, 8000);
+                // 首次切换在8秒后（因为初始显示的是特定话）
+                currentTimeout = setTimeout(switchQuote, 8000);
             }
         });
 
